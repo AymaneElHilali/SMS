@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class EtudiantController {
+
     @Autowired
     private EtudiantService etudiantService;
 
-    @PostMapping("/saveetudiant")
+    @PostMapping("/api/saveetudiant")
     public Etudiant saveEtudiant(@RequestBody Etudiant etudiant){
         return etudiantService.saveEtudiant(etudiant);
     }
