@@ -22,22 +22,11 @@ public class EtudiantService{
 
         }
 
-
-        // Check if password is at least 9 characters
         String password = etudiant.getPassword();
-        if (password.length() < 9) {
-            throw new IllegalArgumentException("Password must be at least 9 characters.");
-        }
-
-        // Regex for checking password strength
-        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{9,}$";
-        if (!password.matches(regex)) {
-            throw new IllegalArgumentException("Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character.");
-        }
-
-        //hash the password and save the etudiant
+        //save the etudiant to chack the exeptions and hash the password when evrythink is clean
+        Etudiant res = etudiantRepository.save(etudiant);
         etudiant.hashPassword(password);
-        return etudiantRepository.save(etudiant);
+        return res;
 
     }
 }

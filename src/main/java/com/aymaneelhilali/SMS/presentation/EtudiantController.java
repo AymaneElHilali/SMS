@@ -4,10 +4,7 @@ import com.aymaneelhilali.SMS.business.service.EtudiantService;
 import com.aymaneelhilali.SMS.dataaccess.entity.Etudiant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class EtudiantController {
@@ -19,5 +16,6 @@ public class EtudiantController {
     public Etudiant saveEtudiant(@RequestBody Etudiant etudiant){
         return etudiantService.saveEtudiant(etudiant);
     }
+
 
 }
