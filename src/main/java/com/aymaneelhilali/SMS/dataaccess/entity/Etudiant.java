@@ -24,11 +24,6 @@ public class Etudiant {
     private String email;
 
     @NotBlank(message = "Password can't be blank")
-    @Size(min = 9,message = "Password must be at least 9 characters.")
-    @Pattern(
-            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{9,}$",
-            message = "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
-    )
     private String password;
 
     @NotBlank(message = "Prenom can't be blank")
@@ -56,7 +51,6 @@ public class Etudiant {
 
     // Method to hash password
     public void hashPassword(String password) {
-        // Hash the password
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         this.password = encoder.encode(password);
     }

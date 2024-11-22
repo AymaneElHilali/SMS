@@ -23,9 +23,22 @@ public class EtudiantService{
         }
 
         String password = etudiant.getPassword();
-        //save the etudiant to chack the exeptions and hash the password when evrythink is clean
-        Etudiant res = etudiantRepository.save(etudiant);
+        // Regex for checking password strength
+        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{9,}$";
+
+        if (!password.matches(regex)) {
+            throw new IllegalArgumentException("Password must contain at least 9 characters, one uppercase letter, one lowercase letter, one digit, and one special character.");
+        }
         etudiant.hashPassword(password);
+        return etudiantRepository.save(etudiant) ;
+
+    }
+
+    public Etudiant getEtudiantById(Long id){
+        Etudiant res =etudiantRepository.findById(id).orElse(null);
+        if (res == null){
+            throw new IllegalArgumentException("0 user found with that id!");
+        }
         return res;
 
     }
