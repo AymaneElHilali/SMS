@@ -1,6 +1,6 @@
 package com.aymaneelhilali.SMS.business.service;
 
-import com.aymaneelhilali.SMS.dataaccess.entity.User;
+import com.aymaneelhilali.SMS.dataaccess.entity.SMSUser;
 import com.aymaneelhilali.SMS.dataaccess.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ public class UserService {
     private UserRepository userRepository;
 
 
-    public User saveUser(User user){
+    public SMSUser saveUser(SMSUser user){
 
         //check if the email already exits
         String email= user.getEmail();
@@ -34,8 +34,8 @@ public class UserService {
 
     }
 
-    public User getUserById(Long id){
-        User res = userRepository.findById(id).orElse(null);
+    public SMSUser getUserById(Long id){
+        SMSUser res = userRepository.findById(id).orElse(null);
         if (res == null){
             throw new IllegalArgumentException("0 user found with that id!");
         }
