@@ -1,5 +1,6 @@
 package com.aymaneelhilali.SMS.dataaccess.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -19,11 +20,11 @@ public class SMSUser {
     private Long id;
 
     @Column(unique = true)
-    @NotBlank(message = "Email can't be blank")
     @Email(message = "Invalid email format")
     private String email;
 
     @NotBlank(message = "Password can't be blank")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @NotBlank(message = "Prenom can't be blank")
@@ -46,6 +47,10 @@ public class SMSUser {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+
 
     // Method to hash password
     public void hashPassword(String password) {
@@ -58,4 +63,5 @@ public class SMSUser {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder.matches(rawPassword, this.password);
     }
+
 }
