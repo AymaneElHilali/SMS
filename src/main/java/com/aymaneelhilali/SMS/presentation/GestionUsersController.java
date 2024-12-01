@@ -21,8 +21,8 @@ public class GestionUsersController {
 
     }
     @GetMapping("/api/ex")
-    public void ex(){
-        throw new NotFoundException("not found");
+    public String ex(){
+        return "hi";
 
 
     }

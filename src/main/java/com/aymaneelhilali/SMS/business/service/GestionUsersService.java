@@ -24,7 +24,7 @@ public class GestionUsersService {
         if (!password.matches(regex)) {
             throw new IllegalArgumentException("Password must contain at least 9 characters, one uppercase letter, one lowercase letter, one digit, and one special character.");
         }
-        newUser.hashPassword(password);
+//        newUser.hashPassword(password);
         return gestionUsersRepo.save(newUser);
 
     }

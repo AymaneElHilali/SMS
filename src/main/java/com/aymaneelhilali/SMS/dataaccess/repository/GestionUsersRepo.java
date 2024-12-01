@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface GestionUsersRepo extends JpaRepository<SMSUser, Long> {
 
      boolean existsByEmail(String email);
+     SMSUser findByEmail(String email);
 
 }
