@@ -52,11 +52,11 @@ public class SMSUser {
 
 
 
-//    // Method to hash password
-//    public void hashPassword(String password) {
-//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        this.password = encoder.encode(password);
-//    }
+    // Method to hash password
+    public void hashPassword(String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        this.password = encoder.encode(password);
+    }
 //
 //    // Method to check if the password matches the hashed password
 //    public boolean checkPassword(String rawPassword) {

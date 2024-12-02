@@ -22,6 +22,11 @@ public class SecuritéConfig {
     @Autowired
     private MyuserDetailsService myuserDetailsService;
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     // we d'ont want to use the defaulte filterChain we want to make ours one
     @Bean
     public SecurityFilterChain securityFilterChain (HttpSecurity filterChain) throws Exception{
@@ -48,7 +53,7 @@ public class SecuritéConfig {
     @Bean
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        daoAuthenticationProvider.setPasswordEncoder(NoOpPasswordEncoder.getInstance());
+        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
         daoAuthenticationProvider.setUserDetailsService(myuserDetailsService);
         return daoAuthenticationProvider;
     }
