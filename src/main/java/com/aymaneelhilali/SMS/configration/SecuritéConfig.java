@@ -36,6 +36,7 @@ public class SecuritéConfig {
                 .csrf(off -> off.disable())
                 .authorizeHttpRequests(req -> req.requestMatchers("/api/ex").authenticated())
                 .authorizeHttpRequests(req -> req.requestMatchers("api/v1/addNewUser").permitAll())
+                .authorizeHttpRequests(req -> req.requestMatchers("/createToken").permitAll())
                 .authorizeHttpRequests(req -> req.requestMatchers("/h2-console/**").permitAll())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
