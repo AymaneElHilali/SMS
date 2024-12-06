@@ -34,10 +34,9 @@ public class SecuritéConfig {
         filterChain
 //                disable csrf
                 .csrf(off -> off.disable())
-                .authorizeHttpRequests(req -> req.requestMatchers("/api/ex").authenticated())
-                .authorizeHttpRequests(req -> req.requestMatchers("api/v1/addNewUser").permitAll())
-                .authorizeHttpRequests(req -> req.requestMatchers("/createToken").permitAll())
-                .authorizeHttpRequests(req -> req.requestMatchers("/h2-console/**").permitAll())
+                        .authorizeHttpRequests(request -> request
+                        .requestMatchers("login", "register","api/v1/addNewUser","/h2-console/**").permitAll()
+                        .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .headers(headers -> headers.frameOptions(frameOptionsConfig -> frameOptionsConfig.sameOrigin()));
