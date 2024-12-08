@@ -37,6 +37,13 @@ public class JwtFilter extends OncePerRequestFilter {
         String token="";
         String email="";
 
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            // Skip processing if no token is present
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+
 
         //the token will be like "bearer 56s5f56sdf5sf" soo we need to remove the first part;
         //and we need to get the username (for this situation the email);

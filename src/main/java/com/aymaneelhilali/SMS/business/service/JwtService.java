@@ -35,14 +35,14 @@ public class JwtService {
     }
 
 
-    public String generateToken(Long id, String email, String role, String prenom, String nom) {
+    public String generateToken(String email) {
         // Create a map of claims to include in the JWT payload
         Map<String, Object> claims = new HashMap<>();
-        claims.put("id", id);
+//        claims.put("id", id);
         claims.put("email", email);
-        claims.put("role", role);
-        claims.put("prenom", prenom);
-        claims.put("nom", nom);
+//        claims.put("role", role);
+//        claims.put("prenom", prenom);
+//        claims.put("nom", nom);
 
         // Build the JWT with the claims, subject, issued time, and expiration time
         return Jwts.builder()

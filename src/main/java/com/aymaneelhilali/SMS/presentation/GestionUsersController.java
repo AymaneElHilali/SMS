@@ -17,11 +17,14 @@ public class GestionUsersController {
 
     @Autowired
     private JwtService jwtService;
+
+    @Autowired
     private GestionUsersService gestionUsersService;
 
 
     @PostMapping("/api/v1/addNewUser")
     public SMSUser addNewUser( @Valid @RequestBody  SMSUser newUser){
+        System.out.println("Controller");
         return gestionUsersService.addNewUser(newUser);
 
     }
@@ -31,12 +34,23 @@ public class GestionUsersController {
 
 
     }
-    @GetMapping("/createToken")
-    public String createToken(){
-        Long id = Long.valueOf(123456789);
-        String token =jwtService.generateToken(id,"aymane@gmail.com","admin","aymane","elhilai");
-        return token;
+//    @GetMapping("/createToken")
+//    public String createToken(){
+//        Long id = Long.valueOf(123456789);
+//        String token =jwtService.generateToken(id,"aymane@gmail.com","admin","aymane","elhilai");
+//        return token;
+//
+//    }
+    @PostMapping("/login")
+    public String login(@RequestBody String email,String passwor){
 
+        return gestionUsersService.login(email,passwor);
+
+    }
+
+    @GetMapping("/pass")
+    public String pass(){
+        return "pass";
     }
 
 
